@@ -106,8 +106,8 @@ CREATE table t_order
     id              serial primary key,
     start_time      timestamp,
     end_time        timestamp,
-    points_count    integer check (points_count >= 0),
-    order_sum       float check (order_sum > 0),
+    points_count    float check (points_count >= 0 and points_count <= order_sum),
+    order_sum       integer check (order_sum > 0),
     address         varchar(255),
     order_status_id integer
         constraint t_order_t_order_status_id_fk
