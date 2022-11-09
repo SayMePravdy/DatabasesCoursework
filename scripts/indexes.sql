@@ -12,5 +12,3 @@ create index if not exists partner_review_index
 
 create index if not exists user_card_index
     on using hash t_loyalty_card(user_id);
-
---and all indexes on pk and unique fields
