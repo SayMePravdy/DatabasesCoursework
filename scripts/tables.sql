@@ -82,7 +82,7 @@ CREATE table t_offer
     end_time         timestamp,
     discount_percent integer check (discount_percent > 0 and discount_percent < 100),
     using_count      integer default 0 check (using_count >= 0),
-    product_id       integer
+    product_id       integer unique
         constraint t_offer_t_product_id_fk
             references t_product
 );
