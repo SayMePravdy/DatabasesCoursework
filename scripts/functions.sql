@@ -31,3 +31,40 @@ begin
 end;
 $$ language plpgsql;
 
+create or replace function get_offers() returns setof t_offer as
+$$
+begin
+    select * from t_offer;
+end;
+$$ language plpgsql;
+create or replace function get_static() returns setof t_review as
+$$
+begin
+    select * from t_review;
+end;
+$$ language plpgsql;
+create or replace function get_orders() returns setof t_order as
+$$
+begin
+    select * from t_order;
+end;
+$$ language plpgsql;
+create or replace function get_feedback() returns setof t_review as
+$$
+begin
+    select * from t_review;
+end;
+$$ language plpgsql;
+create or replace function get_offers_by_product_name(productName varchar(255) default '') returns setof t_review as
+$$
+begin
+    select *
+    from t_offer
+             inner join t_product tp on tp.id = t_offer.product_id
+    where tp.name like productName;
+end;
+$$ language plpgsql;
+
+
+
+
