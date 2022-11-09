@@ -49,10 +49,13 @@ begin
     select * from t_order;
 end;
 $$ language plpgsql;
-create or replace function get_feedback() returns setof t_review as
+create or replace function get_feedback_by_partner(partnerName varchar(255) default '') returns setof t_review as
 $$
 begin
-    select * from t_review;
+    select *
+    from t_review
+             inner join t_partner tp on tp.id = t_review.partner_id
+    where tp.name like partnerName;
 end;
 $$ language plpgsql;
 create or replace function get_offers_by_product_name(productName varchar(255) default '') returns setof t_review as
